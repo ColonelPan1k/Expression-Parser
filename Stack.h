@@ -1,5 +1,5 @@
-#ifndef STACK
-#define STACK
+#ifndef STACK_C
+#define STACK_C
 
 typedef struct Node{
         char data;
@@ -11,7 +11,11 @@ typedef struct Stack{
 }Stack;
 
 Node* createNode(char data);
-Stack* createStack(char data);
+Stack* createStack();
 void push(Stack* st, char data);
 char pop(Stack* st);
+char peek(Stack* st);
 int printStack(Node* node);
+int isEmpty(Stack* st);
+
+#endif
