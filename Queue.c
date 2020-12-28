@@ -21,15 +21,19 @@ createQueue(){
         return newQ;
 }
 
+
+
 void
 enqueue(Queue* q, char data){
         DL_node* newDL = createDLnode(data);
 
-        if (q->front == NULL){
+        if (Q_isEmpty(q)){
                 q->front = newDL;
-        } else {
                 q->back = newDL;
+        } else {
                 newDL->next = q->back;
+                q->back->prev = newDL;
+                q->back = newDL;
         }
 }
 
@@ -58,31 +62,25 @@ Q_isEmpty(Queue* q){
 }
 
 void
-printQueue(Queue* q){
-        DL_node* ref = q->front;
-
-        while(ref->next != NULL){
-                printf("%c\n", ref->data);
-                ref = ref->next;
+printQueue(DL_node* front){
+        if (front == NULL){
+                return;
         }
+        printf("%c\n", front->data);
+
+        printQueue(front->prev);
 }
 
 int main(int argc, char** argv){
         Queue* test = createQueue();
-
+                
         enqueue(test, 'a');
-        printf("Enqueue 'a'\n");
         enqueue(test, 'b');
-        printf("Enqueue 'b'\n");        
         enqueue(test, 'c');
-        printf("Enqueue 'c'\n");
-        
-        printQueue(test);
+                
+        printQueue(test->front);
 
-        dequeue(test);
-        dequeue(test);
+        printf("Dequeue: %c\n", dequeue(test));
 
-        printQueue(test);
-        
-        
+        printQueue(test->front);
 }
