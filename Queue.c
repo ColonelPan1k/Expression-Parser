@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Queue.h"
 
 DL_node* createDLnode(char data){
@@ -52,7 +53,7 @@ dequeue(Queue* q){
 }
 
 char
-peek(Queue* q){
+Q_peek(Queue* q){
         return q->front->data;
 }
 
@@ -69,18 +70,4 @@ printQueue(DL_node* front){
         printf("%c\n", front->data);
 
         printQueue(front->prev);
-}
-
-int main(int argc, char** argv){
-        Queue* test = createQueue();
-                
-        enqueue(test, 'a');
-        enqueue(test, 'b');
-        enqueue(test, 'c');
-                
-        printQueue(test->front);
-
-        printf("Dequeue: %c\n", dequeue(test));
-
-        printQueue(test->front);
 }

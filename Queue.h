@@ -17,7 +17,7 @@ DL_node* createDLnode(char data);
 Queue* createQueue();
 void enqueue(Queue* q, char data);
 char dequeue(Queue* q);
-char peek(Queue* q);
+char Q_peek(Queue* q);
 int Q_isEmpty(Queue* q);
 
 

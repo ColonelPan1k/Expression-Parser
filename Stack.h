@@ -14,8 +14,8 @@ Node* createNode(char data);
 Stack* createStack();
 void push(Stack* st, char data);
 char pop(Stack* st);
-char peek(Stack* st);
+char S_peek(Stack* st);
 int printStack(Node* node);
-int isEmpty(Stack* st);
+int S_isEmpty(Stack* st);
 
 #endif

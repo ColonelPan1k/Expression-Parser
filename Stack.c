@@ -25,7 +25,6 @@ createNode(char data){
 Stack*
 createStack(){
         Stack* newStack = (Stack*)malloc(sizeof(Stack));
-
         newStack->top = NULL;
 
         return newStack;
@@ -51,7 +50,7 @@ pop(Stack* st){
 }
 
 char
-peek(Stack* st){
+S_peek(Stack* st){
         return st->top->data;
 }
 
@@ -67,6 +66,6 @@ printStack(Node* node){
 }
 
 int
-isEmpty(Stack* st){
+S_isEmpty(Stack* st){
         return (st->top == NULL);
 }
