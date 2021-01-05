@@ -6,6 +6,9 @@
  * no reason for a data structure when you'll never actually need to enque/dequeue anything
  */
 
+
+// TODO: Fix shuntingYard so it returns a string instead of just printing
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
