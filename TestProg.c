@@ -1,10 +1,17 @@
+/*
+ * No guarantee this is correct or will even work
+ * but it's worth a shot
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "Stack.h"
-#include "Translator.h"
 
-
+int
+doOp(int (*op)(int, int), int a, int b){
+        return op(a, b);
+}
 
 int
 add(int a, int b){
@@ -21,13 +28,17 @@ mult(int a, int b){
         return a * b;
 }
 
-/* Just integer division for now */
 int
 divide(int a, int b){
         return a / b;
 }
 
-/* Find some way to make this work without a big if/else if/else block */
+// Move to a case/switch statement or something to avoid
+// the if/else blocks
+
+// This currently works for +-*/ for numbers 1-9
+// I'm working on cleaning this up and
+// adding in numbers greater than 10.
 char*
 parse(char* expression){
 
@@ -35,45 +46,57 @@ parse(char* expression){
         int result = 0;
 
         for (int i = 0; i < strlen(expression); ++i){
+                // if the current char is an operand
                 if (expression[i] >= '0' && expression[i] <= '9'){
                         printf("Pushed %i\n", expression[i] - '0');
                         push(st, expression[i] - '0');
+                        
                 } else if (expression[i] == '+'){
-                        result = add( pop(st), pop(st));
+                        result = add(pop(st), pop(st));
+                        printf("add: pushed %i\n", result);
                         push(st, result);
+                        
                 } else if (expression[i] == '-'){
                         result = sub(pop(st), pop(st));
+                        printf("sub: pushed %i\n", result);
                         push(st, result);
                 } else if (expression[i] == '*'){
-                        result  = mult(pop(st), pop(st));
+                        result = mult(pop(st), pop(st));
+                        printf("mult: pushed %i\n", result);
                         push(st, result);
                 } else if (expression[i] == '/'){
+
                         result = divide(pop(st), pop(st));
+                        printf("div: pushed: %i\n", result);
                         push(st, result);
+                        
                 } else {
-                        printf("Something went wrong: %i\n", expression[i] - '0');
+                        printf("Something went wrong: %c\n", expression[i]);
                 }
+                
+
         }
 
         printf("%s = %i\n", expression, result);
+        
+
+
 }
 
+
+char*
+tokenize(char* expression){
+        
+}
 
 int
 main(int argc, char** argv){
 
-        // 1*2+3 => 12*3+
-        // 1+2*3 => 123*+
-        char* testStr = "1*2+3";
-        
+        char* expression = "10,20,30,+,-";
 
-        /* Add in strtok() parsing so this can take numbers > 9 
-         * and also space deliminated expressions like: 2 + 2 instead
-         * of 2+2
-         */
+        char* token = strtok(expression, ",");
+        printf("%s\n", token);
 
-        char* result = translate(testStr, strlen(testStr));
-        
-        printf("Translated Expression: %s\n", result);
+
 }
         
