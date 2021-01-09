@@ -38,15 +38,25 @@ enqueue(Queue* q, char data){
         }
 }
 
+
 char
 dequeue(Queue* q){
 
-        char data = q->front->data;
+        // don't really know why this works but here it is
+        if (q->front->prev == NULL){
+                char front_data = q->front->data;
+                q->front = NULL;
+
+                return front_data;
+        }
+
         DL_node* toFree = q->front;
+        char data = toFree->data;
 
         //update references
         q->front = toFree->prev;
-        toFree->prev->next = NULL;
+        q->front->next = NULL;
+        //toFree->prev->next = NULL;
 
         free(toFree);
         return data;
@@ -59,7 +69,7 @@ Q_peek(Queue* q){
 
 int
 Q_isEmpty(Queue* q){
-        return ((q->front == NULL) && (q->back == NULL));
+        return ((q->front == NULL));
 }
 
 void

@@ -64,13 +64,15 @@ main(int argc, char** argv){
 
         // 1*2+3 => 12*3+
         // 1+2*3 => 123*+
-        char* testStr = "1*2+3";
+        // 1+2*(3-4) => 1234-*+
+        char* testStr = "(2+3)*1-(3*4)";
         
 
         /* Add in strtok() parsing so this can take numbers > 9 
          * and also space deliminated expressions like: 2 + 2 instead
          * of 2+2
          */
+
 
         char* result = translate(testStr, strlen(testStr));
         

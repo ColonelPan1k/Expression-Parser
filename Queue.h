@@ -19,6 +19,6 @@ void enqueue(Queue* q, char data);
 char dequeue(Queue* q);
 char Q_peek(Queue* q);
 int Q_isEmpty(Queue* q);
-
+void printQueue(DL_node* front);
 
 #endif 

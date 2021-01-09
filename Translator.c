@@ -16,8 +16,10 @@ processOp(Stack* opStack, Queue* q, char incoming, int incPrecedence){
 
         if (opTop == '*' || opTop == '/'){
                 topPrecedence = 2;
-        } else {
+        } else if (opTop == '+' || opTop == '-') {
                 topPrecedence = 1;
+        } else {
+                topPrecedence = 0;
         }
 
         if (incPrecedence > topPrecedence ){
@@ -25,74 +27,85 @@ processOp(Stack* opStack, Queue* q, char incoming, int incPrecedence){
                 
                                                       
         } else if (incPrecedence < topPrecedence ){
-
                 char toAdd = pop(opStack);
-                printf("toAdd: %c\n", toAdd);
                 enqueue(q, toAdd);
-                push(opStack, incoming);
-
-
+                push(opStack,incoming);
         }
 }
 
 char*
 translate(char* expression, int len){
 
-        Stack* opStack = createStack();
-        
-
-        /* There's probably a better way to do this but 
-         * as of right now I can't figure out how to do it
-         * with strings so I'm just going to use a queue.
+        /* Since there's no easy way to do 
+         * += for strings in C, I'm going to 
+         * just use a queue for this.  
+         * It's not ideal, but it works for now.
          */
 
-        // The output queue
+        // The main stack 
+        Stack* st = createStack();
+        
         Queue* q = createQueue();
-
         char* output = (char*)calloc(1, sizeof(char) * len);
+        char parenChar;
         
         for (int i = 0; i < len; ++i){
                 char ch = expression[i];
 
+
                 switch(ch){
                 case '+':
                 case '-':
-                        if (S_isEmpty(opStack)){
-                                push(opStack, ch);
+                        if(S_isEmpty(st)){
+                                push(st, ch);
                                 break;
                         }
-                        processOp(opStack, q, ch, 1);
+                        printf("+/- found: %c\n", ch);
+                        processOp(st, q, ch, 1);
                         break;
 
+                        
                 case '*':
                 case '/':
-                        if (S_isEmpty(opStack)){
-                                push(opStack, ch);
+                        if (S_isEmpty(st)){
+                                push(st, ch);
                                 break;
                         }
-                        processOp(opStack, q, ch, 2);
+                        processOp(st, q, ch, 2);
+                        break;
+
+                        
+                case '(':
+                        push(st, ch);
+                        break;
+                case ')':
+                        printStack(st->top);
+                        while((!(S_isEmpty(st)) && (parenChar = pop(st)) != '(')){
+                                enqueue(q, parenChar);
+                        }
+
                         break;
 
                 default:
                         enqueue(q, ch);
+                       
                 }
         }
-
-        while(!(S_isEmpty(opStack))){
-                char toAdd = pop(opStack);
-                printf("%c\n", toAdd);
-                enqueue(q, toAdd);
+                                             
+        // Push the final stack to the output queue
+        while(!(S_isEmpty(st))){
+                enqueue(q, pop(st));
         }
 
+        // Dequeue the output queue to an output string
         int i = 0;
+        while(!(Q_isEmpty(q))){
+                output[i] = dequeue(q);
+                ++i;
+        }
 
-        printf("dequeue: %c\n", dequeue(q));
-        printf("dequeue: %c\n", dequeue(q));
-        printf("dequeue: %c\n", dequeue(q));
-        printf("dequeue: %c\n", dequeue(q));
 
         
         return output;
 
 }
-
