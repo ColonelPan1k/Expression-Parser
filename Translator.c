@@ -50,6 +50,7 @@ translate(char* expression, int len){
         char parenChar;
         
         for (int i = 0; i < len; ++i){
+                // TODO: Add error checking for mismatched parens
                 char ch = expression[i];
 
 
