@@ -81,3 +81,5 @@ printQueue(DL_node* front){
 
         printQueue(front->prev);
 }
+
+//Add a function to convert to a string

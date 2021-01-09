@@ -60,7 +60,6 @@ translate(char* expression, int len){
                                 push(st, ch);
                                 break;
                         }
-                        printf("+/- found: %c\n", ch);
                         processOp(st, q, ch, 1);
                         break;
 
@@ -79,7 +78,6 @@ translate(char* expression, int len){
                         push(st, ch);
                         break;
                 case ')':
-                        printStack(st->top);
                         while((!(S_isEmpty(st)) && (parenChar = pop(st)) != '(')){
                                 enqueue(q, parenChar);
                         }

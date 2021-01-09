@@ -28,7 +28,7 @@ divide(int a, int b){
 }
 
 /* Find some way to make this work without a big if/else if/else block */
-char*
+int
 parse(char* expression){
 
         Stack* st = createStack();
@@ -36,7 +36,6 @@ parse(char* expression){
 
         for (int i = 0; i < strlen(expression); ++i){
                 if (expression[i] >= '0' && expression[i] <= '9'){
-                        printf("Pushed %i\n", expression[i] - '0');
                         push(st, expression[i] - '0');
                 } else if (expression[i] == '+'){
                         result = add( pop(st), pop(st));
@@ -53,29 +52,22 @@ parse(char* expression){
                 } else {
                         printf("Something went wrong: %i\n", expression[i] - '0');
                 }
+                
         }
 
-        printf("%s = %i\n", expression, result);
+        return result;
 }
 
 
 int
 main(int argc, char** argv){
 
-        // 1*2+3 => 12*3+
-        // 1+2*3 => 123*+
-        // 1+2*(3-4) => 1234-*+
-        char* testStr = "(2+3)*1-(3*4)";
-        
-
-        /* Add in strtok() parsing so this can take numbers > 9 
-         * and also space deliminated expressions like: 2 + 2 instead
-         * of 2+2
-         */
+        // TODO: Add strtok() for numbers higher than 10
 
 
-        char* result = translate(testStr, strlen(testStr));
-        
-        printf("Translated Expression: %s\n", result);
+        char* result = translate(argv[1], strlen(argv[1]));
+
+        printf("%i\n", parse(result));
+
 }
         
