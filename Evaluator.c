@@ -27,7 +27,6 @@ divide(int a, int b){
 int
 parse(char* expression){
         Stack* st = createStack();
-        int result = 0;
 
         for (int i = 0; i < strlen(expression); ++i){
                 char ch = expression[i];
@@ -35,22 +34,17 @@ parse(char* expression){
                 switch(ch){
                         
                 case '+':
-                        result = add(pop(st), pop(st));
-                        push(st, result);
+                        push(st, add(pop(st), pop(st)));
                         break;
                 case '-':
-                        result = sub(pop(st), pop(st));
-                        push(st, result);
+                        push(st, sub(pop(st), pop(st)));
                         break;
 
                 case '*':
-                        result = mult(pop(st), pop(st));
-                        push(st, result);
-
+                        push(st, mult(pop(st), pop(st)));
                         break;
                 case '/':
-                        result = divide(pop(st), pop(st));
-                        push(st, result);
+                        push(st, divide(pop(st), pop(st)));
                         break;
 
                 default:
@@ -59,7 +53,7 @@ parse(char* expression){
                 }
         }
 
-        return result;
+        return pop(st);
 }
 
 int main(int argc, char** argv){
