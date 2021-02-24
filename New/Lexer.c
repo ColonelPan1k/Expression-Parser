@@ -16,7 +16,8 @@ typedef struct Lexer{
 Lexer* createLexer(char* source){
         Lexer* newLexer = (Lexer*)malloc(sizeof(Lexer));
         // For now, just create an array of 100 tokens
-        // I won't exceed that in testing
+        // I don't think I'll exceed that in testing.
+        // A linked list of tokens would probably fit better
         newLexer->source = source;
         newLexer->tokens = malloc(sizeof(Token) * 100);
         newLexer->start = 0;
@@ -99,7 +100,6 @@ void scanTokens(Lexer* lexer){
                 lexer->start = lexer->current;
                 scanToken(lexer);
         }
-
         addToken(lexer, newToken(END, "", NULL, lexer->line));
 
 }

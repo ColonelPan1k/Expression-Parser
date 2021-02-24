@@ -4,8 +4,6 @@
 #include "Stack.h"
 #include "Translator.h"
 
-
-
 int
 add(int a, int b){
         return a + b;
@@ -52,7 +50,6 @@ parse(char* expression){
                 } else {
                         printf("Something went wrong: %i\n", expression[i] - '0');
                 }
-                
         }
 
         return result;
@@ -62,12 +59,8 @@ parse(char* expression){
 int
 main(int argc, char** argv){
 
-        // TODO: Add strtok() for numbers higher than 10
-
-
         char* result = translate(argv[1], strlen(argv[1]));
 
         printf("%i\n", parse(result));
 
 }
-        
