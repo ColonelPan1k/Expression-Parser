@@ -27,6 +27,7 @@ String -> Lexer+Token Array -> Shunting yard -> PN Token Array -> Reverse array 
 #include "Lexer.h"
 #include "AST.h"
 #include "T_Queue.h"
+#include "T_Stack.h"
 
 // TODO Make stack and queue for tokens
 
