@@ -12,3 +12,17 @@ proper tokenizer (there really isn't one right now) and parser.  Without a token
 limits the uses of this to no more than a fun experiment.  I'd like to implement those in the future, but as of right now, there's still a lot I need to learn 
 before I feel like I can comforatbly add those features. 
 
+# New and improved
+
+After finding the book *Crafting Interpreters* by Bob Nystrom, I've felt much more confident about actually fixing this project up.  *Crafting Interpreters* focuses 
+less on the theory of how compilers/interpreters work and more on how to actually build one.  It's been an amazing resource so far and I feel much more confident 
+in really making this expression parser work properly.
+
+With that being said, as I work through the book, I'm planning to take what I've learned and apply it to this project and actually make it work as it should. 
+It is much simpler than actually writing a full new langauge interpreter, but still enough of a challenge that it stays fun.  
+I've separated this project into two separate files, mainly because the whole system needs a rewrite and trying to retrofit tokens into the system I've already got
+is something I just don't really feel like doing.  I'll use it as a template for sure, but I think I'd spend more time trying to get it to work with the tokens than
+I would just rewriting one that works with tokens.  
+
+When this is all finished, it should resemble more of an interpreter and less of a few fancy algorithms mixed together.  I'm currently working on the AST and I'm not
+sure there's a whole lot to do after that is finished. 
