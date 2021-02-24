@@ -105,16 +105,7 @@ void scanTokens(Lexer* lexer){
 }
 
 void printTokens(Lexer* lexer){
-        for (int i = 0; i < 9; ++i){
-                printf("\nTokenType: %d\nValue: %s\n", lexer->tokens[i].type, lexer->tokens[i].lexeme);
+        for (int i = 0; i < lexer->tokenPos; ++i){
+                printf("\nValue: %s\nToken Type: %d\n",lexer->tokens[i].lexeme, lexer->tokens[i].type);
         }
-}
-
-
-
-int main(){
-        char* testString = "10 * 20 - ( 30 + 40 )";
-        Lexer* testLexer = createLexer(testString);
-        scanTokens(testLexer);
-        printTokens(testLexer);
 }
