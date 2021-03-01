@@ -1,5 +1,7 @@
 # Expression Parser
 
+** I need to take a few days off because I'm really feeling the burnout, I'll resume work on this project in a few days **
+
 This is the beginning of a project I've wanted to do for awhile now.  I've been interested in how computers can make sense of a programming language and making
 a basic expression parser like this seems to be the best project to play around with how it works.  
 Most of the information will be taken and ported from the section on expression evaluation in Lafore's Data strucutres and algorithms book.  I don't think that 
